@@ -15,48 +15,36 @@ It also wires your shell (`~/.zshrc` + `~/.bashrc`, or your PowerShell profile) 
 the prompt, `z`, the aliases, and the typing help are on in every new terminal. A
 timestamped backup of each shell file is made before it is touched.
 
-## The one command
+## The one command (curl, nothing to download)
 
-### macOS (uses Homebrew)
-```sh
-bash beautify.sh
-```
+`curl ... | bash` fetches the script and runs it in one step. You do NOT need
+`beautify.sh` on the machine; nothing is saved to disk. Pick your case:
 
-### Linux, NO sudo (locked-down box, shared server, you are just a user)
+### macOS or Linux, NO sudo (the default; installs into ~/.local)
 ```sh
-bash beautify.sh
+curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash
 ```
-Everything lands in `~/.local/bin` and `~/.local/share`. Nothing system-wide,
-nothing that needs admin. This is the default on Linux.
+On Linux this lands everything in `~/.local/bin` and `~/.local/share`. No admin,
+nothing system-wide. Works on a locked-down or shared box where you are just a user.
 
 ### Linux, WITH sudo (you own the box, want it system-wide)
 ```sh
-bash beautify.sh --system
+curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash -s -- --system
 ```
-Uses the native package manager (apt, dnf, pacman, or apk). Anything the distro
-does not carry (often starship, eza, tldr) is filled into `~/.local/bin` so you
-still get the full set.
+Uses the native package manager (apt, dnf, pacman, apk). Anything the distro does
+not carry (often starship, eza, tldr) is filled into `~/.local/bin` so you still get
+the full set. `--system` is the only case that uses sudo.
 
 ### Windows (PowerShell, uses Scoop, no admin)
 ```powershell
-.\beautify.ps1
-```
-
-## The curl / irm one-liner (LIVE)
-
-Paste on any fresh machine:
-
-```sh
-# macOS / Linux (no sudo; home-folder install)
-curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash
-
-# Linux, system-wide via sudo
-curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash -s -- --system
-```
-
-```powershell
-# Windows (PowerShell)
 irm https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.ps1 | iex
+```
+
+### Offline / air-gapped (no internet on the box)
+Copy `beautify.sh` (or `beautify.ps1`) over by scp, AirDrop, or USB, then run the
+local form (this is the only time you need the file present):
+```sh
+bash beautify.sh            # add --system for the sudo path
 ```
 
 Hosted at the public repo `https://github.com/markykessaclaude-code/cli-beautify`
