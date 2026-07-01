@@ -42,29 +42,27 @@ still get the full set.
 .\beautify.ps1
 ```
 
-## The curl / irm one-liner (once hosted)
+## The curl / irm one-liner (LIVE)
 
-After this kit is pushed to a public URL, the whole thing becomes a single line you
-can paste on any fresh machine:
+Paste on any fresh machine:
 
 ```sh
-# macOS / Linux (add --system after bash -s -- for the sudo path)
-curl -fsSL https://<host>/beautify.sh | bash
+# macOS / Linux (no sudo; home-folder install)
+curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash
 
-# Linux with sudo (system-wide)
-curl -fsSL https://<host>/beautify.sh | bash -s -- --system
+# Linux, system-wide via sudo
+curl -fsSL https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.sh | bash -s -- --system
 ```
 
 ```powershell
-# Windows
-irm https://<host>/beautify.ps1 | iex
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/markykessaclaude-code/cli-beautify/main/beautify.ps1 | iex
 ```
 
-`<host>` is filled in once Howard approves where it lives (a public Claude-account
-GitHub repo gives `raw.githubusercontent.com/...`; a friendly domain like
-`cli.howardkessa.top` is also possible). The scripts contain no secrets, so a
-public URL is safe. Until then, copy `beautify.sh` / `beautify.ps1` to the target
-machine (scp, AirDrop, USB) and run the local command above.
+Hosted at the public repo `https://github.com/markykessaclaude-code/cli-beautify`
+(no secrets, safe to be public). This `install/` folder in the project is the source
+of truth. To update the live installer: edit the files here, then re-publish (copy
+them into the repo checkout at `~/Documents/Claude Code/cli-beautify` and push).
 
 ## When NOT to install on a box
 
